@@ -22,3 +22,6 @@ lib/
 Thumbs.db
 
 *.csv
+*.png
+
+wykresy/
