@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 import spacy
 
-nlp = spacy.load("pl_core_news_lg")
+
 
 
 def get_ngram_counts(
@@ -41,6 +41,8 @@ def lemmatize(nlp, text):
 
 def lemmatize_pipe(texts):
     """batch lemmatization"""
+    nlp = spacy.load("pl_core_news_lg")
+
     lemmas_list = []
 
     for doc in nlp.pipe(texts, batch_size=1000, disable=["ner", "parser"]):
