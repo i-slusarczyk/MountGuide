@@ -3,8 +3,6 @@ from sklearn.feature_extraction.text import CountVectorizer
 import spacy
 
 
-
-
 def get_ngram_counts(
     df: pd.DataFrame,
     text_col: str = "lemmas",
@@ -12,12 +10,15 @@ def get_ngram_counts(
     min_size: int = 5,
 ):
     """get ngram counts from a dataframe"""
-    vectorizer = CountVectorizer(ngram_range=ngram_range, min_df=min_size)
-    X = vectorizer.fit_transform(df[text_col])
+    try:
+        vectorizer = CountVectorizer(ngram_range=ngram_range, min_df=min_size)
+        X = vectorizer.fit_transform(df[text_col])
 
-    ngram_counts = pd.DataFrame(
-        X.sum(axis=0).T, index=vectorizer.get_feature_names_out(), columns=["count"]
-    )
+        ngram_counts = pd.DataFrame(
+            X.sum(axis=0).T, index=vectorizer.get_feature_names_out(), columns=["count"]
+        )
+    except Exception:
+        ngram_counts = pd.DataFrame()
     return ngram_counts
 
 

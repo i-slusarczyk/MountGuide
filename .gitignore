@@ -25,3 +25,5 @@ Thumbs.db
 *.png
 
 graphs/
+models/
+visualizations/
